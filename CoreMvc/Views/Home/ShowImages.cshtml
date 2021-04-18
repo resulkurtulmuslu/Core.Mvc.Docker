@@ -1,0 +1,21 @@
+﻿@using Microsoft.Extensions.FileProviders;
+@model IEnumerable<IFileInfo>
+
+@{
+    ViewData["Title"] = "ShowImages";
+}
+
+<h1>Images</h1>
+
+@foreach (var image in Model)
+{
+    <div style="border:1px solid; border-radius:10px; background-color:#dddddd; padding:5px; margin:2px;">
+        <img src="~/images/@image.Name"
+             style="width:100px; height:100px; border:1px solid;" />
+
+        <p>Name : @image.Name</p>
+        <p>Lenght : @image.Length</p>
+        <p>Last Modified : @image.LastModified.ToString("dd.MM.yyyy hh:mm:ss")</p>
+        <a type="button" asp-action="ImageDelete" asp-route-fileName="@image.Name" style="background-color: red;border: 1px solid;padding: 4px;color: white;">Delete</a>
+    </div>
+}
